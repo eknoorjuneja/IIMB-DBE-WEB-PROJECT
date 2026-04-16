@@ -12,6 +12,24 @@
 <body>
   <div class="paper-texture" aria-hidden="true"></div>
 
+  <!-- Welcome Modal -->
+  <div class="modal-overlay" id="welcomeModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Welcome! ✨</h2>
+      </div>
+      <p class="modal-text">Check out the page or dive into the project on GitHub!</p>
+      <div class="modal-buttons">
+        <button class="btn-modal btn-modal--primary" id="viewPageBtn">
+          <span class="btn-icon">📄</span> View Page
+        </button>
+        <button class="btn-modal btn-modal--secondary" id="viewRepoBtn">
+          <span class="btn-icon">🔗</span> View Repository
+        </button>
+      </div>
+    </div>
+  </div>
+
   <header class="topbar">
     <a class="logo-sketch" href="#">eknoor<span class="logo-dot">.</span>site</a>
     <nav class="nav-sketch" aria-label="Main">
@@ -237,5 +255,37 @@
       <span>© 2026</span>
     </div>
   </footer>
+
+  <script>
+    // Modal functionality
+    const welcomeModal = document.getElementById('welcomeModal');
+    const viewPageBtn = document.getElementById('viewPageBtn');
+    const viewRepoBtn = document.getElementById('viewRepoBtn');
+
+    // Open modal on page load
+    window.addEventListener('load', () => {
+      welcomeModal.classList.add('modal-open');
+    });
+
+    // View Page button - reload current page
+    viewPageBtn.addEventListener('click', () => {
+      welcomeModal.classList.remove('modal-open');
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // View Repository button - open GitHub link in new tab
+    viewRepoBtn.addEventListener('click', () => {
+      window.open('https://github.com/eknoorjuneja/IIMB-DBE-WEB-PROJECT', '_blank', 'noopener,noreferrer');
+      welcomeModal.classList.remove('modal-open');
+    });
+
+    // Close modal when clicking outside (optional for better UX)
+    welcomeModal.addEventListener('click', (e) => {
+      if (e.target === welcomeModal) {
+        welcomeModal.classList.remove('modal-open');
+      }
+    });
+  </script>
 </body>
 </html>
